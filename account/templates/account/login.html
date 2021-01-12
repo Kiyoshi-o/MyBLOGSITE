@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block body %}
+<div>
+  <h3>ログイン</h3>
+</div>
+<div>
+  <form method='POST'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-info">ログイン</button>
+  </form>
+</div>
+{% endblock body %}

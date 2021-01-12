@@ -1,0 +1,32 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block body %}
+
+<h1 class="d-flex justify-content-center">記事一覧</h1>
+
+{% for post in post_list %}
+<div class="d-flex justify-content-center">
+    <div class="card text-dark bg-light mb-3 w-50 p-3" style="max-width: 70rem;">
+        <div class="row g-0">
+            <div class="card-header"><a href="#">{{ post.author }}</a></div>
+            <div class="col-md-4">
+                {% if post.image %}
+                <img src="{{ post.image.url }}" class="img-thumbnail">
+                {% else %}
+                <img src="/media/materials/NoImage.jpg" class="img-thumbnail">
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title"><a href="{% url 'blog:detail' post.id %}">{{ post.title }}</a></h5>
+                    <p class="card-text">{{ post.content }}</p>
+                    <p class="card-text"><small class="text-muted">{{ post.pub_date }}</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock body %}

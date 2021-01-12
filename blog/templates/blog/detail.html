@@ -1,0 +1,36 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="d-flex justify-content-center ">
+  <div class="card text-dark bg-light mb-3 w-100" style="max-width: 70rem;">
+    <div class="card-header"><a href="#">{{ post.author }}</a></div>
+    <div class="card mb-3">
+      {% if post.image %}
+      <img src="{{ post.image.url }}" class="card-img-top img-thumbnail detail-img">
+      {% endif %}
+      <div class="card-body">
+        <h5 class="card-title">{{ post.title }}</h5>
+        <p class="card-text">{{ post.content }}</p>
+        <p class="card-text"><small class="text-muted">{{ post.pub_date }}</small></p>
+        <div class="container">
+          <div class="row justify-content-evenly">
+            <div class="col-auto">
+              <form action="{% url 'blog:update' post.id %}">
+                <button type="submit" class="btn btn-outline-success">編集</button>
+              </form>
+            </div>
+            <div class="col-auto">
+              <form action="{% url 'blog:delete' post.id %}">
+                <button type="submit" class="btn btn-outline-danger">削除</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock body %}

@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block body %}
+<div>
+  <h3>DELETE</h3>
+  <p>本当に『{{ post.title }}』を削除しますか？</p>
+</div>
+
+<div>
+  <form method='POST'>
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">削除</button>
+  </form>
+</div>
+{% endblock body %}
