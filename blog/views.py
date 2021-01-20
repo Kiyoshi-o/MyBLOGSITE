@@ -58,3 +58,13 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:
             return True
         return False
+
+
+class MyPostListView(ListView):
+    model = Post
+    template_name = 'blog/mypage.html'
+    context_object_name = 'myposts'
+    queryset = Post.objects.all()
+
+    def get_queryset(self):
+        return self.queryset.filter(author=self.request.user).order_by('-pub_date')
